@@ -1,19 +1,5 @@
 const request = require("request");
 
-// const mapURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/waterloo.json?access_token=${mapToken}`;
-// request(mapURL, (error, response) => {
-//     if (error) {
-//         console.log("unable to connect to loaction service");
-//     } else {
-//         const data = JSON.parse(response.body);
-//         if (data.message === "Not Found" || data.features.length === 0) {
-//             console.log("unable to find location");
-//         } else {
-//             console.log(data.features[0].center);
-//         }
-//     }
-// });
-
 const geoCode = (address, callback) => {
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
     address
@@ -23,7 +9,6 @@ const geoCode = (address, callback) => {
     if (error) {
       callback("unable to connect to loaction service", undefined);
     } else {
-      console.log(process.env.MAP_TOKEN);
       const data = JSON.parse(response.body);
       if (data.message === "Not Found" || data.features.length === 0) {
         callback("unable to find location", undefined);
